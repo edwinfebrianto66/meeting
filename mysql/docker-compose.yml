@@ -1,0 +1,51 @@
+
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: auth_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  login-service:
+    build: ./login-service
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./login-service/.env.example
+    depends_on:
+      - mysql
+
+  register-service:
+    build: ./register-service
+    ports:
+      - "4001:4001"
+    env_file:
+      - ./register-service/.env.example
+    depends_on:
+      - mysql
+
+  logout-service:
+    build: ./logout-service
+    ports:
+      - "4002:4002"
+    env_file:
+      - ./logout-service/.env.example
+
+  frontend-react:
+    build: ./frontend-react
+    ports:
+      - "3000:3000"
+
+  frontend-jquery:
+    image: nginx:alpine
+    ports:
+      - "3001:80"
+    volumes:
+      - ./frontend-jquery:/usr/share/nginx/html

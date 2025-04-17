@@ -1,0 +1,16 @@
+# Node.js
+**/node_modules
+**/.env
+npm-debug.log
+
+# Golang
+**/*.exe
+**/*.out
+
+# Python
+**/__pycache__/
+**/*.pyc
+**/.env
+
+# Vite/React
+**/dist/
