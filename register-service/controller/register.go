@@ -2,11 +2,9 @@
 package controller
 
 import (
-    "database/sql"
     "fmt"
     "net/http"
     "register-service/config"
-    "register-service/model"
 )
 
 func Register(w http.ResponseWriter, r *http.Request) {
