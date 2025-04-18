@@ -1,0 +1,76 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: webdev@dk
+      MYSQL_DATABASE: meeting
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  login-service:
+    build: ./login-service
+    container_name: login-service
+    environment:
+      DB_HOST: mysql
+      DB_USER: webdev
+      DB_PASSWORD: webdev@dk
+      DB_NAME: meeting
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mysql
+
+  register-service:
+    build: ./register-service
+    container_name: register-service
+    environment:
+      DB_HOST: mysql
+      DB_USER: webdev
+      DB_PASSWORD: webdev@dk
+      DB_NAME: meeting
+    ports:
+      - "4001:4001"
+    depends_on:
+      - mysql
+
+  logout-service:
+    build: ./logout-service
+    container_name: logout-service
+    environment:
+      DB_HOST: mysql
+      DB_USER: webdev
+      DB_PASSWORD: webdev@dk
+      DB_NAME: meeting
+    ports:
+      - "4002:4002"
+    depends_on:
+      - mysql
+
+  frontend-react:
+    build: ./frontend-react
+    container_name: frontend-react
+    ports:
+      - "3000:3000"
+    depends_on:
+      - login-service
+      - register-service
+      - logout-service
+
+  frontend-jquery:
+    build: ./frontend-jquery
+    container_name: frontend-jquery
+    ports:
+      - "3001:80"
+    depends_on:
+      - login-service
+      - register-service
+      - logout-service
+
+volumes:
+  mysql_data:
