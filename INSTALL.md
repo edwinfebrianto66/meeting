@@ -1,34 +1,124 @@
+# 🚀 Cara Menjalankan Project Microservices Auth
 
-# Cara Menjalankan Project
+Panduan ini menjelaskan cara menjalankan proyek menggunakan Docker dan juga secara manual tanpa Docker.
 
-## Prasyarat
-- Sudah install Docker dan Docker Compose
+---
 
-## Langkah Instalasi
-1. Pastikan semua file sudah dalam 1 folder project:
-   - login-service/
-   - register-service/
-   - logout-service/
-   - frontend-react/
-   - frontend-jquery/
-   - mysql/
-   - docker-compose.yml
+## ✅ Prasyarat
 
-2. Copy `.env.example` menjadi `.env` di masing-masing service jika ingin pakai versi kustom.
+- Sudah install:
+  - Docker & Docker Compose
+  - (opsional) Node.js, Golang, Python, MySQL (untuk jalankan manual)
 
-3. Jalankan perintah berikut:
-   docker-compose up --build
+---
 
-4. Akses dari browser:
-   - http://localhost:3000 → Frontend React
-   - http://localhost:3001 → Frontend jQuery
-   - http://localhost:4000 → Login API (POST /login)
-   - http://localhost:4001 → Register API (POST /register)
-   - http://localhost:4002 → Logout API (POST /logout)
+## 🔧 Struktur Folder yang Diharapkan
 
-5. Database bisa dilihat via phpMyAdmin / DBeaver dengan:
-   Host: localhost, User: root, Password: example, DB: auth_db
+```
+project-root/
+├── login-service/
+├── register-service/
+├── logout-service/
+├── frontend-react/
+├── frontend-vue/
+├── frontend-jquery/
+├── docker-compose.yml
+└── .env
+```
 
-## Catatan Tambahan
-- Pastikan tidak ada port bentrok dengan aplikasi lain.
-- Semua kredensial dan konfigurasi bisa diedit di `.env.example` masing-masing folder.
+---
+
+## 🐳 Jalankan Menggunakan Docker
+
+### 1. Salin `.env` jika tersedia
+```bash
+cp .env.example .env
+```
+
+### 2. Jalankan semua service
+```bash
+docker-compose down -v
+docker-compose up --build
+```
+
+### 3. Akses dari browser:
+- React: [http://localhost:3000](http://localhost:3000)
+- jQuery: [http://localhost:3001](http://localhost:3001)
+- Vue: [http://localhost:3002](http://localhost:3002)
+- Login API: [http://localhost:4000/login](http://localhost:4000/login)
+- Register API: [http://localhost:4001/register](http://localhost:4001/register)
+- Logout API: [http://localhost:4002/logout](http://localhost:4002/logout)
+
+### 4. Akses Database:
+Gunakan tools seperti DBeaver / phpMyAdmin
+- Host: localhost
+- Port: 3306
+- User: webdev
+- Password: webdev@dk
+- Database: meeting
+
+---
+
+## 🧰 Menjalankan Tanpa Docker (Manual)
+
+### 🗄️ Setup MySQL Manual:
+
+```sql
+CREATE DATABASE meeting;
+CREATE USER 'webdev'@'localhost' IDENTIFIED BY 'webdev@dk';
+GRANT ALL PRIVILEGES ON meeting.* TO 'webdev'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+### 🔐 Login Service (Node.js)
+
+```bash
+cd login-service
+npm install
+node index.js
+```
+
+### 📝 Register Service (Go)
+
+```bash
+cd register-service
+go mod tidy
+go run main.go
+```
+
+### 🔓 Logout Service (Python)
+
+```bash
+cd logout-service
+pip install -r requirements.txt
+python app.py
+```
+
+### 🖼️ Frontend React
+
+```bash
+cd frontend-react
+npm install
+npm run dev
+```
+
+### 🖥️ Frontend Vue
+
+```bash
+cd frontend-vue
+npm install
+npm run dev
+```
+
+### 📜 Frontend jQuery
+
+Langsung buka file `login.html` atau `register.html` di folder `frontend-jquery/`.
+
+---
+
+## 📝 Catatan Tambahan
+
+- Pastikan tidak ada port yang bentrok di komputer kamu.
+- Semua variabel environment bisa dikustomisasi di file `.env`.
+- Disarankan pakai Docker untuk environment konsisten dan mudah dijalankan lintas OS.
+

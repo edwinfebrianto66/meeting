@@ -1,11 +1,10 @@
 <template>
-  <div class="login">
+  <div>
     <h2>Login</h2>
-    <form @submit.prevent="handleLogin">
-      <input type="text" v-model="email" placeholder="Email" required />
-      <input type="password" v-model="password" placeholder="Password" required />
+    <form @submit.prevent="login">
+      <input v-model="email" placeholder="Email" />
+      <input v-model="password" type="password" placeholder="Password" />
       <button type="submit">Login</button>
-      <p v-if="error" style="color: red">{{ error }}</p>
     </form>
   </div>
 </template>
@@ -16,21 +15,20 @@ export default {
   data() {
     return {
       email: '',
-      password: '',
-      error: ''
+      password: ''
     };
   },
   methods: {
-    async handleLogin() {
+    async login() {
       try {
         const res = await axios.post('http://localhost:4000/login', {
           email: this.email,
           password: this.password
         });
-        alert('Login berhasil: ' + res.data.message);
+        alert('Login success: ' + res.data.message);
         this.$router.push('/');
-      } catch (err) {
-        this.error = err.response?.data?.message || 'Login gagal';
+      } catch (e) {
+        alert('Login failed');
       }
     }
   }
