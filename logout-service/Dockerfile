@@ -3,4 +3,4 @@ WORKDIR /app
 COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 4002
-CMD ["python", "app/app.py"]
+CMD ["python", "app.py"]

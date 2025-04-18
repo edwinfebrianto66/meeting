@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   mysql:
     image: mysql:5.7
@@ -8,6 +6,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: webdev@dk
       MYSQL_DATABASE: meeting
+      MYSQL_USER: webdev
+      MYSQL_PASSWORD: webdev@dk
     ports:
       - "3306:3306"
     volumes:
@@ -21,6 +21,7 @@ services:
       DB_USER: webdev
       DB_PASSWORD: webdev@dk
       DB_NAME: meeting
+      JWT_SECRET: supersecretkey
     ports:
       - "4000:4000"
     depends_on:
@@ -56,7 +57,7 @@ services:
     build: ./frontend-react
     container_name: frontend-react
     ports:
-      - "3000:3000"
+      - "3000:80"
     depends_on:
       - login-service
       - register-service
@@ -71,6 +72,14 @@ services:
       - login-service
       - register-service
       - logout-service
+
+  frontend-vue:
+    build: ./frontend-vue
+    container_name: frontend-vue
+    ports:
+      - "3002:80"
+    depends_on:
+      - login-service
 
 volumes:
   mysql_data:

@@ -1,10 +1,7 @@
 FROM node:18-alpine as build
-
 WORKDIR /app
 COPY . .
-
 RUN npm install
-RUN npm install react-router-dom
 RUN npm run build
 
 FROM nginx:alpine
