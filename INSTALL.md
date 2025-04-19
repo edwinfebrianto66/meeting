@@ -19,7 +19,6 @@ project-root/
 ├── login-service/
 ├── register-service/
 ├── logout-service/
-├── frontend-react/
 ├── frontend-vue/
 ├── frontend-jquery/
 ├── docker-compose.yml
@@ -42,7 +41,6 @@ docker-compose up --build
 ```
 
 ### 3. Akses dari browser:
-- React: [http://localhost:3000](http://localhost:3000)
 - jQuery: [http://localhost:3001](http://localhost:3001)
 - Vue: [http://localhost:3002](http://localhost:3002)
 - Login API: [http://localhost:4000/login](http://localhost:4000/login)
@@ -92,14 +90,6 @@ go run main.go
 cd logout-service
 pip install -r requirements.txt
 python app.py
-```
-
-### 🖼️ Frontend React
-
-```bash
-cd frontend-react
-npm install
-npm run dev
 ```
 
 ### 🖥️ Frontend Vue

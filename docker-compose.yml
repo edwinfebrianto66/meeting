@@ -55,16 +55,6 @@ services:
     depends_on:
       - mysql
 
-  frontend-react:
-    build: ./frontend-react
-    container_name: frontend-react
-    ports:
-      - "3000:80"
-    depends_on:
-      - login-service
-      - register-service
-      - logout-service
-
   frontend-jquery:
     build: ./frontend-jquery
     container_name: frontend-jquery

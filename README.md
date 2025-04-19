@@ -11,7 +11,6 @@ Ini adalah proyek otentikasi berbasis **Microservices** dengan berbagai teknolog
 | Login Service     | Node.js + JWT     | `http://localhost:4000/login` |
 | Register Service  | Golang + Gin      | `http://localhost:4001/register` |
 | Logout Service    | Python + Flask    | `http://localhost:4002/logout` |
-| Frontend React    | React + Tailwind  | `http://localhost:3000` |
 | Frontend jQuery   | jQuery + nginx    | `http://localhost:3001` |
 | Frontend Vue      | Vue 3 + Vite + nginx | `http://localhost:3002` |
 | MySQL Database    | MySQL 5.7         | `localhost:3306` (user: `webdev`, password: `webdev@dk`) |
@@ -44,14 +43,6 @@ python app.py
 ```
 Akses: [http://localhost:4002/logout](http://localhost:4002/logout)
 
-### 🖼️ Frontend React
-```bash
-cd frontend-react
-npm install
-npm run dev
-```
-Akses: [http://localhost:3000](http://localhost:3000)
-
 ### 📜 Frontend jQuery
 Langsung buka `frontend-jquery/login.html` atau `register.html` di browser.
 
@@ -66,7 +57,6 @@ docker-compose up --build
 
 Akses layanan:
 
-- React: [http://localhost:3000](http://localhost:3000)
 - jQuery: [http://localhost:3001](http://localhost:3001)
 - Vue: [http://localhost:3002](http://localhost:3002)
 - Login API: [http://localhost:4000/login](http://localhost:4000/login)
@@ -82,7 +72,6 @@ Akses layanan:
 ├── login-service/
 ├── register-service/
 ├── logout-service/
-├── frontend-react/
 ├── frontend-vue/
 ├── frontend-jquery/
 ├── docker-compose.yml
@@ -157,17 +146,6 @@ pip install -r requirements.txt
 python app.py
 ```
 Akses: [http://localhost:4002/logout](http://localhost:4002/logout)
-
----
-
-### 🖥️ 5. Frontend React (Vite)
-
-```bash
-cd frontend-react
-npm install
-npm run dev
-```
-Akses: [http://localhost:3000](http://localhost:3000)
 
 ---
 
