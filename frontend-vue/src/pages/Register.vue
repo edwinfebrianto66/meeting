@@ -19,18 +19,32 @@
 </template>
 
 <script setup>
-await fetch('http://localhost:4001/register', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    name: name.value,
-    email: email.value,
-    password: password.value
-  })
-})
-.then(res => res.json())
-.then(data => {
-  alert(data.message || 'Pendaftaran berhasil')
-  router.push('/login')
-})
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const name = ref('')
+const email = ref('')
+const password = ref('')
+const router = useRouter()
+
+async function handleRegister() {
+  try {
+    const res = await fetch('http://localhost:4001/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name.value, email: email.value, password: password.value })
+    })
+    const data = await res.json()
+
+    if (res.ok) {
+      alert(data.message || 'Pendaftaran berhasil!')
+      router.push('/login')
+    } else {
+      alert(data.message || 'Gagal daftar')
+    }
+  } catch (err) {
+    alert('Gagal menghubungi server register.')
+    console.error(err)
+  }
+}
 </script>

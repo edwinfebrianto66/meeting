@@ -1,10 +1,13 @@
+const express = require('express')
+const cors = require('cors')
+const bodyParser = require('body-parser')
+const authRoutes = require('./routes/auth.routes')
 
-const express = require('express');
-const authRoutes = require('./routes/auth.routes');
-require('dotenv').config();
+const app = express()
 
-const app = express();
-app.use(express.json());
-app.use('/login', authRoutes);
+app.use(cors({ origin: 'http://localhost:3002' }))
+app.use(bodyParser.json())
 
-module.exports = app;
+app.use('/login', authRoutes)
+
+module.exports = app

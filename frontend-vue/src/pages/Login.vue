@@ -12,31 +12,41 @@
           Belum punya akun?
           <router-link to="/register" class="text-blue-600 hover:underline">Daftar sekarang</router-link>
         </p>
-		<p class="text-sm text-center mt-2">
-			<router-link to="/forgot-password" class="text-blue-600 hover:underline">Lupa password?</router-link>
-		</p>
-
+        <p class="text-sm text-center">
+          <router-link to="/forgot-password" class="text-blue-600 hover:underline">Lupa password?</router-link>
+        </p>
       </form>
     </div>
   </div>
 </template>
 
 <script setup>
-const res = await fetch('http://localhost:4000/login', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    email: email.value,
-    password: password.value
-  })
-})
-const data = await res.json()
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-if (res.ok) {
-  localStorage.setItem('token', data.token)
-  router.push('/') // atau ke /dashboard
-} else {
-  alert(data.message || 'Login gagal')
+const email = ref('')
+const password = ref('')
+const router = useRouter()
+
+async function handleLogin() {
+  try {
+    const res = await fetch('http://localhost:4000/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email.value, password: password.value })
+    })
+    const data = await res.json()
+
+    if (res.ok) {
+      localStorage.setItem('token', data.token)
+      alert('Login berhasil!')
+      router.push('/')
+    } else {
+      alert(data.message || 'Login gagal')
+    }
+  } catch (err) {
+    alert('Gagal menghubungi server login.')
+    console.error(err)
+  }
 }
-
 </script>

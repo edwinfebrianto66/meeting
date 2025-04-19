@@ -1,4 +1,7 @@
+require('dotenv').config()
+const app = require('./src/app')
 
-const app = require('./src/app');
-const PORT = 4000;
-app.listen(PORT, () => console.log(`Login service running on port ${PORT}`));
+const PORT = process.env.PORT || 4000
+app.listen(PORT, () => {
+  console.log(`Login service running on port ${PORT}`)
+})

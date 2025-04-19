@@ -3,17 +3,10 @@
     <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-2xl shadow-xl">
       <h2 class="text-2xl font-bold text-center text-gray-800">Lupa Password</h2>
       <form @submit.prevent="handleForgotPassword" class="space-y-4">
-        <input
-          v-model="email"
-          type="email"
-          placeholder="Masukkan email kamu"
-          class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          required
-        />
-        <button
-          type="submit"
-          class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition"
-        >
+        <input v-model="email" type="email" placeholder="Masukkan email kamu"
+               class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required />
+        <button type="submit"
+                class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition">
           Kirim Link Reset
         </button>
         <p class="text-sm text-center">
@@ -48,7 +41,7 @@ async function handleForgotPassword() {
     }
   } catch (error) {
     console.error(error)
-    alert('Gagal menghubungi server. Pastikan backend Python aktif di port 4002.')
+    alert('Gagal menghubungi server lupa password.')
   }
 }
 </script>

@@ -10,7 +10,6 @@ const routes = [
   { path: '/', redirect: '/login' }
 ]
 
-
 const router = createRouter({
   history: createWebHistory(),
   routes,

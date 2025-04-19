@@ -1,10 +1,10 @@
 {
-  "name": "frontend-vue",
+  "name": "frontend-vue-connected",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "preview": "vite preview"
   },
   "dependencies": {
     "vue": "^3.4.0",
