@@ -1,6 +1,5 @@
-FROM python:3.11-slim
+FROM python:3.10-slim
 WORKDIR /app
 COPY . .
-RUN pip install --no-cache-dir -r requirements.txt
-EXPOSE 4002
+RUN pip install -r requirements.txt
 CMD ["python", "app.py"]

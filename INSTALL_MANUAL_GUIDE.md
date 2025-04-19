@@ -1,3 +1,4 @@
+
 # 🚀 Cara Menjalankan Project Microservices Auth
 
 Panduan ini menjelaskan cara menjalankan proyek menggunakan Docker dan juga secara manual tanpa Docker.
@@ -12,7 +13,7 @@ Panduan ini menjelaskan cara menjalankan proyek menggunakan Docker dan juga seca
 
 ---
 
-## 🔧 Struktur Folder yang Diharapkan
+## 🐇 Struktur Folder yang Diharapkan
 
 ```
 project-root/
@@ -27,7 +28,7 @@ project-root/
 
 ---
 
-## 🐳 Jalankan Menggunakan Docker
+## 🐘 Jalankan Menggunakan Docker
 
 ### 1. Salin `.env` jika tersedia
 ```bash
@@ -41,11 +42,11 @@ docker-compose up --build
 ```
 
 ### 3. Akses dari browser:
-- jQuery: [http://localhost:3001](http://localhost:3001)
-- Vue: [http://localhost:3002](http://localhost:3002)
-- Login API: [http://localhost:4000/login](http://localhost:4000/login)
-- Register API: [http://localhost:4001/register](http://localhost:4001/register)
-- Logout API: [http://localhost:4002/logout](http://localhost:4002/logout)
+- jQuery: http://localhost:3001
+- Vue: http://localhost:3002
+- Login API: http://localhost:4000/login
+- Register API: http://localhost:4001/register
+- Logout API: http://localhost:4002/logout
 
 ### 4. Akses Database:
 Gunakan tools seperti DBeaver / phpMyAdmin
@@ -57,10 +58,35 @@ Gunakan tools seperti DBeaver / phpMyAdmin
 
 ---
 
-## 🧰 Menjalankan Tanpa Docker (Manual)
+## 🧠 Menjalankan Tanpa Docker (Manual)
 
-### 🗄️ Setup MySQL Manual:
+### 🔧 Install Node.js Manual
+- Download dari: https://nodejs.org/
+- Pilih versi LTS (misal 18.x)
+- Cek versi:
+```bash
+node -v
+npm -v
+```
 
+### 🔧 Install Golang Manual
+- Download dari: https://golang.org/dl/
+- Ekstrak ke direktori `/usr/local` atau install langsung (Windows .msi tersedia)
+- Cek versi:
+```bash
+go version
+```
+
+### 🔧 Install Python Manual
+- Download dari: https://www.python.org/downloads/
+- Centang “Add Python to PATH” saat install (Windows)
+- Cek versi:
+```bash
+python --version
+pip --version
+```
+
+### 🧾 Setup MySQL Manual:
 ```sql
 CREATE DATABASE meeting;
 CREATE USER 'webdev'@'localhost' IDENTIFIED BY 'webdev@dk';
@@ -69,7 +95,6 @@ FLUSH PRIVILEGES;
 ```
 
 ### 🔐 Login Service (Node.js)
-
 ```bash
 cd login-service
 npm install
@@ -77,7 +102,6 @@ node index.js
 ```
 
 ### 📝 Register Service (Go)
-
 ```bash
 cd register-service
 go mod tidy
@@ -85,23 +109,20 @@ go run main.go
 ```
 
 ### 🔓 Logout Service (Python)
-
 ```bash
 cd logout-service
 pip install -r requirements.txt
 python app.py
 ```
 
-### 🖥️ Frontend Vue
-
+### 💻 Frontend Vue
 ```bash
 cd frontend-vue
 npm install
 npm run dev
 ```
 
-### 📜 Frontend jQuery
-
+### 🖥️ Frontend jQuery
 Langsung buka file `login.html` atau `register.html` di folder `frontend-jquery/`.
 
 ---
@@ -111,4 +132,3 @@ Langsung buka file `login.html` atau `register.html` di folder `frontend-jquery/
 - Pastikan tidak ada port yang bentrok di komputer kamu.
 - Semua variabel environment bisa dikustomisasi di file `.env`.
 - Disarankan pakai Docker untuk environment konsisten dan mudah dijalankan lintas OS.
-

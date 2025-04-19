@@ -32,15 +32,21 @@ async function handleLogin() {
   try {
     const res = await fetch('http://localhost:4000/login', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email.value, password: password.value })
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email.value,
+        password: password.value
+      })
     })
+
     const data = await res.json()
 
     if (res.ok) {
       localStorage.setItem('token', data.token)
       alert('Login berhasil!')
-      router.push('/')
+      router.push('/dashboard')
     } else {
       alert(data.message || 'Login gagal')
     }
