@@ -168,3 +168,16 @@ npm install
 npm run dev
 ```
 Akses: [http://localhost:3002](http://localhost:3002)
+
+---
+
+## 🧾 Database Otomatis
+
+File `setup_meeting_db.sql` akan dijalankan otomatis saat container MySQL dibuat (melalui Docker).  
+Jika kamu menjalankan proyek ini tanpa Docker, jalankan file tersebut secara manual:
+
+```bash
+mysql -u root -p < setup_meeting_db.sql
+```
+
+Pastikan database `meeting` dan tabel `users` sudah tersedia sesuai kebutuhan.
