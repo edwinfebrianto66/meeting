@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Reset Password</title>
+  <style>
+    body { font-family: sans-serif; background: #f0f0f0; }
+    .container { max-width: 400px; margin: 100px auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    input, button { width: 100%; margin: 0.5rem 0; padding: 0.75rem; border-radius: 6px; border: 1px solid #ccc; }
+    button { background: #17a2b8; color: white; border: none; cursor: pointer; }
+    button:hover { background: #138496; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Reset Password</h2>
+    <input type="password" id="password" placeholder="Password Baru" />
+    <button onclick="reset()">Simpan Password</button>
+  </div>
+
+  <script>
+    function reset() {
+      fetch('http://localhost:4002/reset-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: localStorage.getItem("reset_email"),
+          password: document.getElementById('password').value
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        alert(data.message || "Reset berhasil");
+        window.location.href = "login.html";
+      });
+    }
+  </script>
+</body>
+</html>

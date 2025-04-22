@@ -1,19 +1,47 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
   <title>Login</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body { font-family: sans-serif; background: #f0f0f0; }
+    .container { max-width: 400px; margin: 100px auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    input, button { width: 100%; margin: 0.5rem 0; padding: 0.75rem; border-radius: 6px; border: 1px solid #ccc; }
+    button { background: #2c7be5; color: white; border: none; cursor: pointer; }
+    button:hover { background: #1a68d1; }
+  </style>
 </head>
-<body class="p-10">
-  <div class="p-6 max-w-md mx-auto bg-white rounded-xl shadow-md space-y-4">
-    <h2 class="text-xl font-bold">Login</h2>
-    <input id="email" class="w-full border p-2" placeholder="Email"><br>
-    <input id="password" class="w-full border p-2" placeholder="Password" type="password"><br>
-    <button id="loginBtn" class="bg-blue-500 text-white px-4 py-2 rounded">Login</button>
-    <p id="result" class="text-sm mt-2 break-all"></p>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <p><a href="forgot.html">Lupa Password?</a></p><p><a href="register.html">Belum punya akun? Register</a></p>
   </div>
-  <script src="script.js"></script>
+
+  <script>
+    function login() {
+      fetch('http://localhost:4000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: document.getElementById('email').value,
+          password: document.getElementById('password').value
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("email", document.getElementById('email').value);
+          window.location.href = "dashboard.html";
+        } else {
+          alert(data.message || "Login gagal");
+        }
+      });
+    }
+  </script>
 </body>
 </html>

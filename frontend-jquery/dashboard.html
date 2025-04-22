@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard</title>
+  <style>
+    body { font-family: sans-serif; background: #f0f0f0; }
+    .container { max-width: 500px; margin: 100px auto; background: #fff; padding: 2rem; border-radius: 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    button { padding: 0.75rem 1.5rem; background: #dc3545; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #c82333; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Halo, <span id="user-email"></span>!</h2>
+    <p>Token Anda:</p>
+    <code id="token-display"></code>
+    <br/><br/>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+  if (!localStorage.getItem("token")) window.location.href = "login.html";
+    document.getElementById('user-email').textContent = localStorage.getItem("email");
+    document.getElementById('token-display').textContent = localStorage.getItem("token");
+
+    function logout() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("email");
+      localStorage.removeItem("reset_email");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

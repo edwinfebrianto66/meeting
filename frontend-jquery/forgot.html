@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Lupa Password</title>
+  <style>
+    body { font-family: sans-serif; background: #f0f0f0; }
+    .container { max-width: 400px; margin: 100px auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    input, button { width: 100%; margin: 0.5rem 0; padding: 0.75rem; border-radius: 6px; border: 1px solid #ccc; }
+    button { background: #ffc107; color: black; border: none; cursor: pointer; }
+    button:hover { background: #e0a800; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Lupa Password</h2>
+    <input type="email" id="email" placeholder="Email" />
+    <button onclick="forgot()">Kirim Link Reset</button>
+  </div>
+
+  <script>
+    function forgot() {
+      fetch('http://localhost:4002/forgot-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: document.getElementById('email').value
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.found) {
+          localStorage.setItem("reset_email", document.getElementById('email').value);
+          window.location.href = "reset.html";
+        } else {
+          alert(data.message || "Email tidak ditemukan");
+        }
+      });
+    }
+  </script>
+</body>
+</html>
