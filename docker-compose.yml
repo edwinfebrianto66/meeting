@@ -6,12 +6,12 @@ services:
     container_name: mysql-db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: webdev@dk
+      MYSQL_ROOT_PASSWORD: edwin1234
       MYSQL_DATABASE: meeting
-      MYSQL_USER: webdev
-      MYSQL_PASSWORD: webdev@dk
+      MYSQL_USER: edwin
+      MYSQL_PASSWORD: edwin1234
     ports:
-      - "3306:3306"
+      - "6033:6033"
     volumes:
       - ./setup_meeting_db.sql:/docker-entrypoint-initdb.d/setup.sql
 
@@ -20,8 +20,8 @@ services:
     container_name: login-service
     environment:
       DB_HOST: mysql
-      DB_USER: webdev
-      DB_PASSWORD: webdev@dk
+      DB_USER: edwin
+      DB_PASSWORD: edwin1234
       DB_NAME: meeting
       JWT_SECRET: supersecretkey
     ports:
@@ -34,8 +34,8 @@ services:
     container_name: register-service
     environment:
       DB_HOST: mysql
-      DB_USER: webdev
-      DB_PASSWORD: webdev@dk
+      DB_USER: edwin
+      DB_PASSWORD: edwin1234
       DB_NAME: meeting
     ports:
       - "4001:4001"
@@ -47,8 +47,8 @@ services:
     container_name: logout-service
     environment:
       DB_HOST: mysql
-      DB_USER: webdev
-      DB_PASSWORD: webdev@dk
+      DB_USER: edwin
+      DB_PASSWORD: edwin1234
       DB_NAME: meeting
     ports:
       - "4002:4002"

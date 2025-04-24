@@ -13,7 +13,7 @@ Ini adalah proyek otentikasi berbasis **Microservices** dengan berbagai teknolog
 | Logout Service    | Python + Flask    | `http://localhost:4002/logout` |
 | Frontend jQuery   | jQuery + nginx    | `http://localhost:3001` |
 | Frontend Vue      | Vue 3 + Vite + nginx | `http://localhost:3002` |
-| MySQL Database    | MySQL 5.7         | `localhost:3306` (user: `webdev`, password: `webdev@dk`) |
+| MySQL Database    | MySQL 5.7         | `localhost:6033` (user: `edwin`, password: `edwin1234`) |
 
 ---
 
@@ -84,9 +84,9 @@ Akses layanan:
 
 ```env
 DB_HOST=mysql
-DB_PORT=3306
-DB_USER=webdev
-DB_PASSWORD=webdev@dk
+DB_PORT=6033
+DB_USER=edwin
+DB_PASSWORD=edwin1234
 DB_NAME=meeting
 JWT_SECRET=supersecretkey
 ```
@@ -109,8 +109,8 @@ Pastikan Anda sudah menginstall:
 
 ```sql
 CREATE DATABASE meeting;
-CREATE USER 'webdev'@'localhost' IDENTIFIED BY 'webdev@dk';
-GRANT ALL PRIVILEGES ON meeting.* TO 'webdev'@'localhost';
+CREATE USER 'edwin'@'localhost' IDENTIFIED BY 'edwin1234';
+GRANT ALL PRIVILEGES ON meeting.* TO 'edwin'@'localhost';
 FLUSH PRIVILEGES;
 ```
 

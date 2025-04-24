@@ -51,9 +51,9 @@ docker-compose up --build
 ### 4. Akses Database:
 Gunakan tools seperti DBeaver / phpMyAdmin
 - Host: localhost
-- Port: 3306
-- User: webdev
-- Password: webdev@dk
+- Port: 6033
+- User: edwin
+- Password: edwin1234
 - Database: meeting
 
 ---
@@ -89,8 +89,8 @@ pip --version
 ### 🧾 Setup MySQL Manual:
 ```sql
 CREATE DATABASE meeting;
-CREATE USER 'webdev'@'localhost' IDENTIFIED BY 'webdev@dk';
-GRANT ALL PRIVILEGES ON meeting.* TO 'webdev'@'localhost';
+CREATE USER 'edwin'@'localhost' IDENTIFIED BY 'edwin1234';
+GRANT ALL PRIVILEGES ON meeting.* TO 'edwin'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
