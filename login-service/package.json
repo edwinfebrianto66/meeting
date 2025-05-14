@@ -1,16 +1,16 @@
 {
   "name": "login-service",
   "version": "1.0.0",
-  "description": "Login Service for Meeting App",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
     "express": "^4.18.2",
-    "mysql2": "^3.6.0",
-    "jsonwebtoken": "^9.0.0",
-    "dotenv": "^16.0.3",
-    "cors": "^2.8.5"
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "mysql2": "^3.9.4",
+    "jsonwebtoken": "^9.0.2",
+    "dotenv": "^16.3.1"
   }
 }
